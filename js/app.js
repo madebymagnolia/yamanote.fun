@@ -24,7 +24,7 @@
   const innerBtn = document.getElementById("inner");
   const outerBtn = document.getElementById("outer");
 
-  let currentIndex = 26;              // open on Tamachi (JY27 → array index 26)
+  let currentIndex = 30;              // open on Tokyo (JY01 → array index 01)
   let direction = +1;                 // inner loop ascends; outer descends
   let playing = false;
   let spineOffset = 0;                // accumulated dotted-line scroll
@@ -190,8 +190,8 @@
   outerBtn.addEventListener("click", () => setLoop(false));
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight" || e.key === "ArrowUp") { e.preventDefault(); next(); }
-    else if (e.key === "ArrowLeft" || e.key === "ArrowDown") { e.preventDefault(); prev(); }
+    if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
     else if (e.key === " ") { e.preventDefault(); togglePlay(); }
   });
 
@@ -213,8 +213,23 @@
     rt = window.setTimeout(() => { measure(); layout(false); }, 120);
   });
 
+  // Pin the app surface to the REAL viewport height. In an iOS standalone PWA
+  // the fixed-positioning viewport can be shorter than the screen, so we drive
+  // height from window.innerHeight (which reports the full standalone height).
+  function setAppHeight() {
+    document.documentElement.style.setProperty("--app-height", window.innerHeight + "px");
+  }
+  setAppHeight();
+  window.addEventListener("resize", setAppHeight);
+  window.addEventListener("orientationchange", () => {
+    setAppHeight();
+    // iOS settles the new viewport a beat after the event fires
+    window.setTimeout(() => { setAppHeight(); measure(); layout(false); }, 250);
+  });
+
   /* boot ------------------------------------------------------------------- */
   build();
+  setAppHeight();
   measure();
   layout(false);
   setLoop(true);

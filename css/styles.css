@@ -42,10 +42,18 @@ body {
   user-select: none;
 }
 
-/* full-bleed app surface, centred on a phone-width column */
+/* full-bleed app surface, centred on a phone-width column.
+   Height is pinned to the DYNAMIC viewport (100dvh) rather than `inset:0`,
+   because in an iOS standalone PWA the fixed-positioning viewport can be
+   reported shorter than the screen — leaving a black gap at the bottom.
+   A JS-set --app-height (window.innerHeight) wins where it's available. */
 .app {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;                       /* fallback for old engines */
+  height: var(--app-height, 100dvh);   /* dynamic vh, JS override wins */
   overflow: hidden;
   background: var(--bg);
 }
