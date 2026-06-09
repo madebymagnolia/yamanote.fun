@@ -323,17 +323,17 @@
     else if (e.key === " ") { e.preventDefault(); togglePlay(); }
   });
 
-  // swipe to scrub — the ribbon tracks the finger for a short distance, then
-  // commits to the next/previous station on release (or springs back). Because
+  // swipe to scrub — the ribbon tracks the finger 1:1, and the moment the drag
+  // passes AUTO_PX the switch fires automatically (no need to lift). Because
   // the dotted spine and every station live inside #ribbon, translating the
-  // ribbon previews the move with everything moving together; on release we
-  // hand off into the normal step() animation (or ease the offset back to 0).
+  // ribbon previews the move with everything moving together; when it commits
+  // we ease the offset back to 0 and hand off into the normal step() animation.
   const FOLLOW_MAX = 104;   // hard cap on how far the ribbon follows the finger
   const FOLLOW_LIN = 64;    // 1:1 zone before resistance kicks in
-  const COMMIT_PX  = 40;    // release past this distance commits a step
-  const COMMIT_V   = 0.55;  // …or a flick faster than this (px/ms) commits
+  const AUTO_PX    = 48;    // drag past this auto-fires the switch mid-gesture
+  const COMMIT_V   = 0.55;  // …or a flick faster than this (px/ms) on release
 
-  let touchY = null, lastY = 0, lastT = 0, vel = 0, dragging = false;
+  let touchY = null, lastY = 0, lastT = 0, vel = 0, dragging = false, committed = false;
 
   // 1:1 near zero, easing toward FOLLOW_MAX so the ribbon never runs away
   function follow(dy) {
@@ -343,19 +343,35 @@
     return s * (FOLLOW_LIN + span * (1 - Math.exp(-over / span)));
   }
 
+  // Ease the ribbon offset back to 0 and fire the step — the shared hand-off
+  // used both mid-drag (auto) and on release.
+  function commitStep(dir) {
+    ribbon.classList.remove("dragging");    // re-arm the transform transition
+    ribbon.style.transform = "translateY(0)";   // hand off into the step anim
+    step(dir); syncAudio(true);
+  }
+
   stage.addEventListener("touchstart", (e) => {
     touchY = lastY = e.touches[0].clientY;
-    lastT = e.timeStamp; vel = 0; dragging = true;
+    lastT = e.timeStamp; vel = 0; dragging = true; committed = false;
     ribbon.classList.add("dragging");      // track the finger with no easing
   }, { passive: true });
 
   stage.addEventListener("touchmove", (e) => {
-    if (!dragging) return;
+    if (!dragging || committed) return;
     const y = e.touches[0].clientY;
     const dt = e.timeStamp - lastT;
     if (dt > 0) vel = (y - lastY) / dt;     // instantaneous velocity (px/ms)
     lastY = y; lastT = e.timeStamp;
-    ribbon.style.transform = "translateY(" + follow(y - touchY) + "px)";
+    const dy = y - touchY;
+    // Auto-fire the switch the instant the drag crosses the threshold — the
+    // gesture is then locked until the finger lifts, so one swipe = one step.
+    if (Math.abs(dy) >= AUTO_PX) {
+      committed = true;
+      commitStep(dy < 0 ? +1 : -1);         // swipe up → next, down → prev
+      return;
+    }
+    ribbon.style.transform = "translateY(" + follow(dy) + "px)";
   }, { passive: true });
 
   function endDrag(endY) {
@@ -363,20 +379,17 @@
     dragging = false;
     const dy = endY - touchY;
     touchY = null;
+    if (committed) { committed = false; return; }   // already switched mid-drag
     ribbon.classList.remove("dragging");    // re-arm the transform transition
     ribbon.style.transform = "translateY(0)";   // spring back / hand off
-    const commit = Math.abs(dy) > COMMIT_PX || Math.abs(vel) > COMMIT_V;
-    if (commit) {
-      // swipe up pulls the next station up; swipe down the previous
-      const dir = dy < 0 ? +1 : -1;
-      step(dir); syncAudio(true);
-    }
+    // Lifted before the threshold: a quick flick still commits.
+    if (Math.abs(vel) > COMMIT_V) { step(dy < 0 ? +1 : -1); syncAudio(true); }
   }
 
   stage.addEventListener("touchend", (e) => endDrag(e.changedTouches[0].clientY), { passive: true });
   stage.addEventListener("touchcancel", () => {
     if (!dragging) return;
-    dragging = false; touchY = null;
+    dragging = false; committed = false; touchY = null;
     ribbon.classList.remove("dragging");
     ribbon.style.transform = "translateY(0)";
   }, { passive: true });
