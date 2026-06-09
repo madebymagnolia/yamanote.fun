@@ -16,7 +16,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/styles.css?v=22" />
+<link rel="stylesheet" href="css/styles.css?v=23" />
+<script>
+  /* Flag the installed/fullscreen PWA so the stylesheet can give it its own
+     chrome spacing (navigator.standalone covers iOS versions that don't
+     support the display-mode media query). Runs before paint, no flash. */
+  if (window.navigator.standalone === true ||
+      (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches)) {
+    document.documentElement.classList.add("standalone");
+  }
+</script>
 </head>
 <body class="booting">
   <div class="app">

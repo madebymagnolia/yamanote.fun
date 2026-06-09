@@ -28,6 +28,38 @@
   --intro-dur: 0.9s;
   /* ribbon/stations fade a full second slower than the chrome slide-in */
   --intro-fade-dur: 1.9s;
+
+  /* ── chrome spacing — TUNE THESE ──────────────────────────────
+     The loop toggle (top) and media controls (bottom) need DIFFERENT
+     spacing in Safari's browser view vs. the installed fullscreen PWA,
+     so each mode gets its own values. These defaults target Safari:
+     the browser toolbars eat into the viewport, so we pull both the
+     toggle and the controls close to the edges to undo the squashed feel. */
+  --toggle-top:      max(20px, env(safe-area-inset-top, 0px) + 8px);
+  --controls-bottom: max(20px, env(safe-area-inset-bottom, 0px) + 16px);
+}
+
+/* ── installed PWA (Home Screen, fullscreen) ──────────────────────
+   Detected two ways for maximum coverage: the standalone display-mode
+   media query (iOS 16.4+) and a `standalone` class that app boot stamps
+   on <html> via navigator.standalone (older iOS). Either one wins.
+
+   Here .app is deliberately over-extended past the bottom edge by the
+   TOP inset (see the .app rule), so a plain `bottom:` lands too low and
+   crowds the home indicator. We add that top inset back into the offset
+   to cancel the over-extension, then sit a comfortable gap above the
+   home indicator (its own bottom inset + breathing room). */
+html.standalone {
+  --toggle-top:      max(48px, env(safe-area-inset-top, 0px) + 24px);
+  --controls-bottom: calc(env(safe-area-inset-top, 0px)
+                        + env(safe-area-inset-bottom, 0px) + 38px);
+}
+@media (display-mode: standalone) {
+  html {
+    --toggle-top:      max(48px, env(safe-area-inset-top, 0px) + 24px);
+    --controls-bottom: calc(env(safe-area-inset-top, 0px)
+                          + env(safe-area-inset-bottom, 0px) + 38px);
+  }
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -235,7 +267,7 @@ body.booting .controls {
 /* ── top loop toggle ──────────────────────────────────────── */
 .toggle {
   position: absolute;
-  top: max(48px, env(safe-area-inset-top, 0px) + 24px);
+  top: var(--toggle-top);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -272,7 +304,7 @@ body.booting .controls {
 /* ── bottom media controls ────────────────────────────────── */
 .controls {
   position: absolute;
-  bottom: max(54px, env(safe-area-inset-bottom, 0px) + 30px);
+  bottom: var(--controls-bottom);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
