@@ -34,7 +34,6 @@
 
 html, body {
   margin: 0;
-  /* height: 100%; */
   height: 100vh;
   background: var(--bg);
   overscroll-behavior: none;
@@ -119,20 +118,9 @@ body.booting .ribbon { opacity: 0; }
 body.booting .toggle {
   transform: translateX(-50%) translateY(calc(-100% - 140px));
 }
-/* controls: each child enters independently —
-   prev slides in from off-screen left, next from off-screen right,
-   the play button pops up in place. */
-body.booting .controls #prev { transform: translateX(-110vw); }
-body.booting .controls #next { transform: translateX(110vw); }
-body.booting .controls #play { transform: scale(0.4); opacity: 0; }
-
-body:not(.booting) .controls #prev { animation: ctrlInLeft  var(--intro-dur) var(--ease) backwards; }
-body:not(.booting) .controls #next { animation: ctrlInRight var(--intro-dur) var(--ease) backwards; }
-body:not(.booting) .controls #play { animation: ctrlPop    var(--intro-dur) var(--ease) backwards; }
-
-@keyframes ctrlInLeft  { from { transform: translateX(-110vw); } }
-@keyframes ctrlInRight { from { transform: translateX(110vw); } }
-@keyframes ctrlPop     { from { transform: scale(0.4); opacity: 0; } }
+body.booting .controls {
+  transform: translateX(-50%) translateY(calc(100% + 160px));
+}
 .no-anim,
 .no-anim * { transition: none !important; }
 
@@ -247,7 +235,7 @@ body:not(.booting) .controls #play { animation: ctrlPop    var(--intro-dur) var(
 /* ── top loop toggle ──────────────────────────────────────── */
 .toggle {
   position: absolute;
-  top: max(32px, env(safe-area-inset-top, 0px) + 8px);
+  top: max(48px, env(safe-area-inset-top, 0px) + 24px);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -284,7 +272,7 @@ body:not(.booting) .controls #play { animation: ctrlPop    var(--intro-dur) var(
 /* ── bottom media controls ────────────────────────────────── */
 .controls {
   position: absolute;
-  bottom: max(38px, env(safe-area-inset-bottom, 0px) + 14px);
+  bottom: max(54px, env(safe-area-inset-bottom, 0px) + 30px);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -333,10 +321,5 @@ body:not(.booting) .controls #play { animation: ctrlPop    var(--intro-dur) var(
   .spine, .station, .station .name, .station .badge { transition-duration: 0.001s; }
   .ribbon, .toggle, .controls { transition-duration: 0.001s; }
   body.booting .toggle   { transform: translateX(-50%); }
-  body.booting .controls #prev,
-  body.booting .controls #next { transform: none; }
-  body.booting .controls #play { transform: none; opacity: 1; }
-  body:not(.booting) .controls #prev,
-  body:not(.booting) .controls #next,
-  body:not(.booting) .controls #play { animation: none; }
+  body.booting .controls { transform: translateX(-50%); }
 }
