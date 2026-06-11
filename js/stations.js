@@ -2,7 +2,7 @@
 // Inner loop runs in ascending JY order; outer loop descends.
 // The line is circular: after JY30 (Yūrakuchō) comes JY01 (Tōkyō).
 window.YAMANOTE_STATIONS = [
-  { jy: "01", name: "Tōkyō",            kanji: "東京",   artwork: "artwork/JY01.png", audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY01-Tokyo-Inner.opus",      outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY01-Tokyo-Outer.opus" } },
+  { jy: "01", name: "Tōkyō",            kanji: "東京",   artwork: "artwork/JY01.png", audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY01-Tokyo-Inner.opus?v=2",      outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY01-Tokyo-Outer.opus?v=2" } },
   { jy: "02", name: "Kanda",            kanji: "神田",   artwork: "artwork/JY02.png", audio: { inner: "uploads/inner-JY02-Kanda.opus",      outer: "uploads/outer-JY02-Kanda.opus" } },
   { jy: "03", name: "Akihabara",        kanji: "秋葉原", artwork: "artwork/JY03.png", audio: { inner: "uploads/inner-JY03-Akihabara.opus",    outer: "uploads/outer-JY03-Akihabara.opus" } },
   { jy: "04", name: "Okachimachi",      kanji: "御徒町", artwork: "artwork/JY04.png", audio: { inner: "uploads/inner-JY04-Okachimachi.opus",  outer: "uploads/outer-JY04-Okachimachi.opus" } },
