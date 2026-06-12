@@ -10,21 +10,21 @@ window.YAMANOTE_STATIONS = [
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY01-Tokyo-Inner.opus",            outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY01-Tokyo-Outer.opus" },
     sections: {
       outer: [ { label: "Melody", end: 10 }, { label: "Door Chime", end: 14 }, { label: "Ambience", end: 25.5 }, { label: "Announcement", end: 49 }, { label: "Ambience", end: 55 }, { label: "Door Chime", end: 61.5 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      inner: [ { label: "Melody", end: 8.5 }, { label: "Door Chime", end: 12 }, { label: "Ambience", end: 23.5 }, { label: "Announcement", end: 49.5 }, { label: "Ambience", end: 54 }, { label: "Door Chime", end: 61 } ]
     }
   },
   { jy: "02", name: "Kanda",            kanji: "神田",   artwork: "artwork/JY02.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY02-Kanda-Inner.opus",            outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY02-Kanda-Outer.opus" },
     sections: {
       outer: [ { label: "Melody", end: 11 }, { label: "Door Chime", end: 15 }, { label: "Ambience", end: 21.5 }, { label: "Announcement", end: 51 }, { label: "Ambience", end: 56.8 }, { label: "Door Chime", end: 62 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      inner: [ { label: "Melody", end: 10.5 }, { label: "Door Chime", end: 14.5 }, { label: "Ambience", end: 23 }, { label: "Announcement", end: 63 }, { label: "Ambience", end: 67 }, { label: "Door Chime", end: 74 } ]
     }
   },
   { jy: "03", name: "Akihabara",        kanji: "秋葉原", artwork: "artwork/JY03.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY03-Akihabara-Inner.opus",        outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY03-Akihabara-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 8.5 }, { label: "Door Chime", end: 12.3 }, { label: "Ambience", end: 25.5 }, { label: "Announcement", end: 49.5 }, { label: "Ambience", end: 54 }, { label: "Door Chime", end: 61 } ],
+      inner: [ { label: "Melody", end: 8 }, { label: "Door Chime", end: 12 }, { label: "Ambience", end: 19.5 }, { label: "Announcement", end: 43.5 }, { label: "Ambience", end: 49.5 }, { label: "Door Chime", end: 58.3 } ]
     }
   },
   { jy: "04", name: "Okachimachi",      kanji: "御徒町", artwork: "artwork/JY04.png",

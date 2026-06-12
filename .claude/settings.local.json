@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"/Users/pauljackson/Documents/Yamanote Skill/Scrub Bar\" -type f | sort)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

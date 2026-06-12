@@ -710,7 +710,7 @@ html[data-theme="light"] .scrub-chip {
 .scrub-track {
   position: relative;
   display: flex;
-  gap: 2px;
+  gap: 4px;
   height: 4px;
   flex: 1;
   max-width: 204px;
