@@ -30,8 +30,8 @@ window.YAMANOTE_STATIONS = [
   { jy: "04", name: "Okachimachi",      kanji: "御徒町", artwork: "artwork/JY04.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY04-Okachimachi-Inner.opus",      outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY04-Okachimachi-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 10 }, { label: "Door Chime", end: 13.6 }, { label: "Ambience", end: 16.8 }, { label: "Announcement", end: 52.8 }, { label: "Ambience", end: 55.5 }, { label: "Door Chime", end: 62.2 } ],
+      inner: [ { label: "Melody", end: 7.8 }, { label: "Door Chime", end: 11.1 }, { label: "Ambience", end: 16 }, { label: "Announcement", end: 45.5 }, { label: "Ambience", end: 48.7 }, { label: "Door Chime", end: 56.49 } ]
     }
   },
   { jy: "05", name: "Ueno",             kanji: "上野",   artwork: "artwork/JY05.png",
