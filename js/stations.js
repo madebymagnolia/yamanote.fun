@@ -44,15 +44,15 @@ window.YAMANOTE_STATIONS = [
   { jy: "06", name: "Uguisudani",       kanji: "鶯谷",   artwork: "artwork/JY06.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY06-Uguisudani-Inner.opus",       outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY06-Uguisudani-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 11.7 }, { label: "Door Chime", end: 15.5 }, { label: "Ambience", end: 19.8 }, { label: "Announcement", end: 46.3 }, { label: "Ambience", end: 52 }, { label: "Door Chime", end: 57.7 } ],
+      inner: [ { label: "Melody", end: 11 }, { label: "Door Chime", end: 14.7 }, { label: "Ambience", end: 24 }, { label: "Announcement", end: 60 }, { label: "Ambience", end: 63 }, { label: "Door Chime", end: 72.8 } ]
     }
   },
   { jy: "07", name: "Nippori",          kanji: "日暮里", artwork: "artwork/JY07.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY07-Nippori-Inner.opus",          outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY07-Nippori-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 12.6 }, { label: "Door Chime", end: 16.3 }, { label: "Ambience", end: 21.6 }, { label: "Announcement", end: 47.6 }, { label: "Ambience", end: 52.5 }, { label: "Door Chime", end: 58.5 }, {label: "Station Announcement", end: 74.3 } ],
+      inner: [ { label: "Melody", end: 8 }, { label: "Door Chime", end: 11.6 }, { label: "Ambience", end: 19.3 }, { label: "Announcement", end: 33.5 }, { label: "Ambience", end: 44.2 }, { label: "Door Chime", end: 52 } ]
     }
   },
   { jy: "08", name: "Nishi-Nippori",    kanji: "西日暮里", artwork: "artwork/JY08.png",
