@@ -37,8 +37,8 @@ window.YAMANOTE_STATIONS = [
   { jy: "05", name: "Ueno",             kanji: "上野",   artwork: "artwork/JY05.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY05-Ueno-Inner.opus",             outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY05-Ueno-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 9 }, { label: "Door Chime", end: 13 }, { label: "Ambience", end: 24 }, { label: "Announcement", end: 38 }, { label: "Ambience", end: 44 }, { label: "Door Chime", end: 49.6 } ],
+      inner: [ { label: "Melody", end: 8.5 }, { label: "Door Chime", end: 12 }, { label: "Ambience", end: 21.7 }, { label: "Announcement", end: 44.5 }, { label: "Ambience", end: 49.5 }, { label: "Door Chime", end: 54 }, { label: "Station Announcement", end: 70 } ]
     }
   },
   { jy: "06", name: "Uguisudani",       kanji: "鶯谷",   artwork: "artwork/JY06.png",
