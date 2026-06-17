@@ -473,6 +473,22 @@ html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
   }
 }
 
+/* desktop: zoom the ribbon (station names, badges, scrub bars) to 125%.
+   Uses the standalone `scale` property — NOT `transform` — because JS
+   drives .ribbon's `transform` directly for the drag gesture (see app.js);
+   `scale` composes independently so it never gets clobbered.
+   transform-origin is pinned to --ribbon-mid (the vertical centre of the
+   toggle↔controls band, set by measure() in app.js) so the active station
+   stays put at its calculated position instead of drifting as it scales.
+   .toggle / .controls / .corner-ctrl / .modal are siblings of .ribbon, not
+   descendants, so they are completely unaffected and stay at 100%. */
+@media (min-width: 640px) {
+  .ribbon {
+    scale: 1.25;
+    transform-origin: 50% var(--ribbon-mid, 50%);
+  }
+}
+
 /* corner buttons slide up with the rest of the chrome on boot — a pure
    transform slide (no opacity fade) so they move in perfect lock-step with
    the playback controls instead of fading in ahead of them. They stay hidden

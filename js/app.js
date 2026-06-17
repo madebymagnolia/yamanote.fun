@@ -19,6 +19,9 @@
   const SCRUB_BELOW = 44;    // space below name centre reserved for the scrub bar
   const BLOCK = BOX + GAP + NAME + SCRUB_BELOW;   // total active-station block
 
+  const DESKTOP_BP    = 640;    // keep in sync with the CSS @media breakpoint
+  const DESKTOP_SCALE = 1.25;   // keep in sync with the CSS `.ribbon { scale: ... }`
+
   const ribbon   = document.getElementById("ribbon");
   const stage    = document.getElementById("stage");
   const playBtn  = document.getElementById("play");
@@ -246,15 +249,24 @@
     const mid = (T + C) / 2;
     dotPeriod = 10;
 
+    // Desktop zooms .ribbon by DESKTOP_SCALE, anchored at `mid` (--ribbon-mid
+    // in CSS) — so the active block renders BLOCK*S tall, centred on mid.
+    // nameCenter needs no adjustment: it's expressed proportionally to mid,
+    // so it scales correctly along with everything else automatically.
+    // prevCenter/nextCenter are different: they're meant to sit exactly
+    // midway between the (fixed, unscaled) chrome and the block's RENDERED
+    // edge. Solving translateY(local) so that, after the ribbon's scale,
+    // the rendered position lands exactly there gives the S-corrected
+    // formula below (reduces to the original unscaled formula at S = 1).
+    const S = window.innerWidth >= DESKTOP_BP ? DESKTOP_SCALE : 1;
+
     // Role-based spacing: the current block (JY box + name) is centred in the
     // band. The previous name is centred in the space above the block (between
     // the toggle and the box); the next name is centred in the space below it
     // (between the current name and the controls).
-    const blockTop    = mid - BLOCK / 2;
-    const blockBottom = mid + BLOCK / 2;
-    nameCenter = blockBottom - NAME / 2 - SCRUB_BELOW;  // name sits above the scrub
-    prevCenter = (T + blockTop) / 2;                // centred above the block
-    nextCenter = (blockBottom + C) / 2;             // centred below the block
+    nameCenter = mid + BLOCK / 2 - NAME / 2 - SCRUB_BELOW;  // name sits above the scrub
+    prevCenter = mid + (T - mid) / (2 * S) - BLOCK / 4;     // centred above the rendered block
+    nextCenter = mid + (C - mid) / (2 * S) + BLOCK / 4;     // centred below the rendered block
     upGap   = nameCenter - prevCenter;
     downGap = nextCenter - nameCenter;
 
@@ -264,6 +276,9 @@
 
     document.documentElement.style.setProperty("--badge", BOX + "px");
     document.documentElement.style.setProperty("--dot", dotPeriod + "px");
+    // anchor point for the desktop ribbon zoom — keeps the active station
+    // pinned at the same screen position regardless of scale (see CSS).
+    document.documentElement.style.setProperty("--ribbon-mid", mid + "px");
 
     if (spine) {
       spine.style.top = "-3500px";

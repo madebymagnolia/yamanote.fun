@@ -1,6 +1,6 @@
 {
-  "name": "Yamanote Line — Station Melodies",
-  "short_name": "Yamanote",
+  "name": "Yamanote.fun",
+  "short_name": "Yamanote.fun",
   "description": "Listen to the station departure melodies of every Yamanote Line station, like a playlist.",
   "start_url": "index.html",
   "scope": "./",
@@ -9,8 +9,8 @@
   "background_color": "#191917",
   "theme_color": "#191917",
   "icons": [
-    { "src": "icons/icon-192-0.2.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icons/icon-512-0.2.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icons/icon-512-maskable-0.2.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "icons/icon-192-0.3.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512-0.3.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512-maskable-0.3.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
