@@ -149,71 +149,71 @@ window.YAMANOTE_STATIONS = [
   { jy: "21", name: "Ebisu",            kanji: "恵比寿", artwork: "artwork/JY21.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY21-Ebisu-Inner.opus",            outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY21-Ebisu-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 12.6 }, { label: "Door Chime", end: 16 }, { label: "Ambience", end: 25.9 }, { label: "Announcement", end: 54 }, { label: "Ambience", end: 59 }, { label: "Door Chime", end: 67.2 } ],
+      inner: [ { label: "Melody", end: 12 }, { label: "Door Chime", end: 15.6 }, { label: "Ambience", end: 28.7 }, { label: "Announcement", end: 78.6 }, { label: "Ambience", end: 84.5 }, { label: "Door Chime", end: 90.5 } ]
     }
   },
   { jy: "22", name: "Meguro",           kanji: "目黒",   artwork: "artwork/JY22.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY22-Meguro-Inner.opus",           outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY22-Meguro-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 9.3 }, { label: "Door Chime", end: 12.9 }, { label: "Ambience", end: 24.2 }, { label: "Announcement", end: 49.7 }, { label: "Ambience", end: 55.6 }, { label: "Door Chime", end: 62 } ],
+      inner: [ { label: "Melody", end: 10 }, { label: "Door Chime", end: 13.5 }, { label: "Ambience", end: 25 }, { label: "Announcement", end: 50 }, { label: "Ambience", end: 62 }, { label: "Door Chime", end: 69.8 } ]
     }
   },
   { jy: "23", name: "Gotanda",          kanji: "五反田", artwork: "artwork/JY23.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY23-Gotanda-Inner.opus",          outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY23-Gotanda-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 9.5 }, { label: "Door Chime", end: 13.1 }, { label: "Ambience", end: 23.8 }, { label: "Announcement", end: 51.6 }, { label: "Ambience", end: 56.1 }, { label: "Door Chime", end: 63.2 } ],
+      inner: [ { label: "Melody", end: 9.3 }, { label: "Door Chime", end: 13 }, { label: "Ambience", end: 22.7 }, { label: "Announcement", end: 51.2 }, { label: "Ambience", end: 63.8 }, { label: "Door Chime", end: 70 }, { label: "Station Announcement", end: 84.8 } ]
     }
   },
   { jy: "24", name: "Ōsaki",            kanji: "大崎",   artwork: "artwork/JY24.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY24-Osaki-Inner.opus",            outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY24-Osaki-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 9.3 }, { label: "Door Chime", end: 13 }, { label: "Ambience", end: 22.5 }, { label: "Announcement", end: 64.6 }, { label: "Ambience", end: 90.5 }, { label: "Door Chime", end: 97.2 }, { label: "Station Announcement", end: 111.4 } ],
+      inner: [ { label: "Melody", end: 8 }, { label: "Door Chime", end: 11.5 }, { label: "Ambience", end: 22 }, { label: "Announcement", end: 47.4 }, { label: "Ambience", end: 54 }, { label: "Door Chime", end: 59.4 } ]
     }
   },
   { jy: "25", name: "Shinagawa",        kanji: "品川",   artwork: "artwork/JY25.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY25-Shinagawa-Inner.opus",        outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY25-Shinagawa-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 9 }, { label: "Door Chime", end: 12.7 }, { label: "Ambience", end: 25.2 }, { label: "Announcement", end: 74.8 }, { label: "Ambience", end: 78.8 }, { label: "Door Chime", end: 85.5 } ],
+      inner: [ { label: "Melody", end: 8 }, { label: "Door Chime", end: 11.5 }, { label: "Ambience", end: 20.3 }, { label: "Announcement", end: 48 }, { label: "Ambience", end: 54 }, { label: "Door Chime", end: 62.1 } ]
     }
   },
   { jy: "26", name: "Takanawa Gateway", kanji: "高輪ゲートウェイ", artwork: "artwork/JY26.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY26-Takanawa-Gateway-Inner.opus", outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY26-Takanawa-Gateway-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 12.6 }, { label: "Door Chime", end: 16.3 }, { label: "Ambience", end: 20 }, { label: "Announcement", end: 68.3 }, { label: "Ambience", end: 74.2 }, { label: "Door Chime", end: 81.1 } ],
+      inner: [ { label: "Melody", end: 8.4 }, { label: "Door Chime", end: 12.6 }, { label: "Ambience", end: 18.9 }, { label: "Announcement", end: 80.5 }, { label: "Ambience", end: 83.8 }, { label: "Door Chime", end: 93.3 } ]
     }
   },
   { jy: "27", name: "Tamachi",          kanji: "田町",   artwork: "artwork/JY27.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY27-Tamachi-Inner.opus",          outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY27-Tamachi-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 9.5 }, { label: "Door Chime", end: 13 }, { label: "Ambience", end: 24.7 }, { label: "Announcement", end: 52 }, { label: "Ambience", end: 64.9 }, { label: "Door Chime", end: 70.5 } ],
+      inner: [ { label: "Melody", end: 7.8 }, { label: "Door Chime", end: 11.5 }, { label: "Ambience", end: 16.5 }, { label: "Announcement", end: 66.3 }, { label: "Ambience", end: 69.7 }, { label: "Door Chime", end: 77.3 } ]
     }
   },
   { jy: "28", name: "Hamamatsuchō",     kanji: "浜松町", artwork: "artwork/JY28.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY28-Hamamatsucho-Inner.opus",     outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY28-Hamamatsucho-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 9.6 }, { label: "Door Chime", end: 13.1 }, { label: "Ambience", end: 24.3 }, { label: "Announcement", end: 53.2 }, { label: "Ambience", end: 65 }, { label: "Door Chime", end: 71 } ],
+      inner: [ { label: "Melody", end: 8.5 }, { label: "Door Chime", end: 12 }, { label: "Ambience", end: 20.6 }, { label: "Announcement", end: 68.5 }, { label: "Ambience", end: 73 }, { label: "Door Chime", end: 82.3 } ]
     }
   },
   { jy: "29", name: "Shimbashi",        kanji: "新橋",   artwork: "artwork/JY29.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY29-Shimbashi-Inner.opus",        outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY29-Shimbashi-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 9.2 }, { label: "Door Chime", end: 13 }, { label: "Ambience", end: 23.9 }, { label: "Announcement", end: 50 }, { label: "Ambience", end: 61.4 }, { label: "Door Chime", end: 64.9 }, { label: "Station Announcement", end: 82.7 } ],
+      inner: [ { label: "Melody", end: 7.9 }, { label: "Door Chime", end: 11.5 }, { label: "Ambience", end: 21.6 }, { label: "Announcement", end: 49.2 }, { label: "Ambience", end: 53.8 }, { label: "Door Chime", end: 63.5 } ]
     }
   },
   { jy: "30", name: "Yūrakuchō",        kanji: "有楽町", artwork: "artwork/JY30.png",
     audio: { inner: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY30-Yurakucho-Inner.opus",        outer: "https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY30-Yurakucho-Outer.opus" },
     sections: {
-      outer: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ],
-      inner: [ { label: "Melody", end: 0 }, { label: "Door Chime", end: 0 }, { label: "Ambience", end: 0 }, { label: "Announcement", end: 0 }, { label: "Ambience", end: 0 }, { label: "Door Chime", end: 0 } ]
+      outer: [ { label: "Melody", end: 8.7 }, { label: "Door Chime", end: 12.3 }, { label: "Ambience", end: 19.3 }, { label: "Announcement", end: 59.2 }, { label: "Ambience", end: 65.9 }, { label: "Door Chime", end: 72.1 } ],
+      inner: [ { label: "Melody", end: 7.8 }, { label: "Door Chime", end: 11.5 }, { label: "Ambience", end: 20 }, { label: "Announcement", end: 48.6 }, { label: "Ambience", end: 53.8 }, { label: "Door Chime", end: 63.2 } ]
     }
   },
 ];
