@@ -134,7 +134,16 @@
     scrubTimeTotal.textContent = "0:00";
     row.appendChild(scrubTimeTotal);
 
-    updateScrubBar();
+    // updateScrubBar() reads getBoundingClientRect() to place the head/chip,
+    // which forces the browser to synchronously flush layout. buildScrubBar()
+    // now runs immediately inside step(), in the same tick as the transform
+    // change that kicks off the slide — calling that measurement here would
+    // force the flush right then, delaying the very first animated frame
+    // (felt as a pause before the slide starts). Deferring by one frame lets
+    // the transform change go through the normal rendering pipeline first;
+    // the structural content above (chip text, segments, timestamps) is
+    // already in place either way.
+    requestAnimationFrame(updateScrubBar);
   }
 
   function updateScrubBar() {
