@@ -672,7 +672,7 @@ body.booting .corner-ctrl {
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.01em;
-  color: var(--dim);
+  color: var(--fg);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
   min-width: 28px;
