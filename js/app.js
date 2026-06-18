@@ -756,6 +756,9 @@
     for (let i = 0; i < N; i++) {
       if (names[i]) names[i].textContent = lang === "ja" ? S[i].kanji : S[i].name;
     }
+    // Flag the kanji state so the stylesheet can switch the ribbon names to
+    // Zen Maru Gothic (and weight it per theme: medium dark, bold light).
+    document.documentElement.setAttribute("data-namelang", lang);
     if (langSeg) {
       langSeg.querySelectorAll("[data-lang]").forEach((b) =>
         b.classList.toggle("on", b.getAttribute("data-lang") === lang));
@@ -763,8 +766,10 @@
     try { localStorage.setItem("yamanote-lang", lang); } catch (e) {}
   }
   if (langSeg) {
+    // Clicking anywhere on the control flips EN ⇄ JP, so tapping the active
+    // option switches too (rather than only the inactive one responding).
     langSeg.querySelectorAll("[data-lang]").forEach((b) =>
-      b.addEventListener("click", () => applyLang(b.getAttribute("data-lang"))));
+      b.addEventListener("click", () => applyLang(currentLang() === "ja" ? "en" : "ja")));
   }
 
   /* ── melodies table (built once, into the info modal) ────────────────────
@@ -790,7 +795,7 @@
       stn.className = "m-stn";
       stn.textContent = st.name;
       tr.appendChild(stn);
-      [m.inner, m.outer].forEach((v) => {
+      [m.outer, m.inner].forEach((v) => {
         const td = document.createElement("td");
         td.className = "m-mel" + (v && counts[v] > 1 ? " shared" : "");
         td.textContent = v || "—";

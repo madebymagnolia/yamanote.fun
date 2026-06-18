@@ -289,6 +289,15 @@ html[data-theme="light"] .station.active .badge .num {
   cursor: default;
 }
 
+/* Kanji station names (JP mode) use Zen Maru Gothic. data-namelang is set on
+   <html> by applyLang; the weight follows the theme — medium in dark, bold in
+   light — to keep the heavier strokes legible on the near-white surface. */
+html[data-namelang="ja"] .station .name {
+  font-family: "Zen Maru Gothic", "Space Grotesk", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
 /* the JY badge floats above the name, fading + scaling into view
    only while its station is the active one */
 .station .badge {
@@ -908,6 +917,45 @@ html[data-theme="light"] .modal-mark svg .rails {
   transition: background-color var(--theme-dur, 0.45s) var(--ease);
 }
 
+
+/* ── landscape guard (installed PWA) ───────────────────────────────
+   iOS ignores the manifest's "orientation": "portrait" for home-screen
+   PWAs and offers no JS orientation lock, so when the installed app is
+   turned landscape we cover it with a "rotate back" prompt rather than
+   letting the portrait-tuned layout break. Hidden by default; shown only
+   when standalone AND landscape. Both standalone signals are honoured to
+   match the rest of the stylesheet (class for old iOS, media query for new). */
+.rotate-lock {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;            /* above the info modal (modal sits below) */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 24px;
+  text-align: center;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Space Grotesk", system-ui, sans-serif;
+}
+.rotate-lock p {
+  margin: 0;
+  max-width: 16em;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--dim);
+}
+.rotate-lock svg { color: var(--green); }
+
+@media (orientation: landscape) {
+  html.standalone .rotate-lock { display: flex; }
+}
+@media (display-mode: standalone) and (orientation: landscape) {
+  .rotate-lock { display: flex; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .spine, .station, .station .name, .station .badge { transition-duration: 0.001s; }
