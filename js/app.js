@@ -125,6 +125,14 @@
       var fill = document.createElement("div");
       fill.className = "scrub-fill";
       seg.appendChild(fill);
+      // Click a segment to jump to its start. segStart is captured per
+      // iteration (const above), so each segment seeks to its own boundary.
+      seg.addEventListener("click", function () {
+        if (!current) return;
+        if (seg.classList.contains("scrub-segment--active")) return;  // already here
+        try { current.currentTime = segStart; } catch (e) {}
+        updateScrubBar();   // reflect the jump immediately, even while paused
+      });
       scrubTrack.insertBefore(seg, scrubHead);
       scrubSegments.push(seg);
     });
@@ -177,9 +185,12 @@
     const segDur   = segEnd - segStart;
     const progress = segDur > 0 ? Math.min(1, Math.max(0, (t - segStart) / segDur)) : 0;
 
-    // Only the active section is lit; past and future stay dim.
+    // Only the active section is lit; past and future stay dim. The active
+    // segment is also flagged so it can't be clicked/hovered (you're already
+    // there — seeking to its own start would be a no-op).
     scrubSegments.forEach(function (seg, i) {
       seg.querySelector(".scrub-fill").style.width = (i === si) ? "100%" : "0%";
+      seg.classList.toggle("scrub-segment--active", i === si);
     });
 
     const sumDur   = sections[sections.length - 1].end || 1;

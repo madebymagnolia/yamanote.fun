@@ -27,6 +27,7 @@
   --ctrl-inset:     inset 0 1px 0 0 var(--ctrl-ring);   /* edge highlights */
   --ctrl-blur:      none;                                /* glass blur (light only) */
   --dim:       rgba(255, 255, 255, 0.30);   /* inactive text            */
+  --scrub-hover: rgba(255, 255, 255, 0.5);  /* scrub segment hover (lighter than --dim) */
   --spine:     rgba(255, 255, 255, 0.30);   /* dotted-line dots         */
   --m-card:    rgba(255, 255, 255, 0.045);  /* modal grouped-card surface */
   --m-track:   rgba(0, 0, 0, 0.28);         /* modal segmented-control track */
@@ -81,6 +82,7 @@ html[data-theme="light"] {
   --ctrl-blur:      blur(16px);
   --ctrl-shadow: 0 4px 18px rgba(25, 25, 23, 0.16), 0 1px 4px rgba(25, 25, 23, 0.12);
   --dim:       rgba(25, 25, 23, 0.3);
+  --scrub-hover: rgba(25, 25, 23, 0.5);
   --spine:     rgba(25, 25, 23, 0.22);
   --m-card:    rgba(0, 0, 0, 0.035);
   --m-track:   rgba(0, 0, 0, 0.06);
@@ -876,8 +878,25 @@ html[data-theme="light"] .modal-mark svg .rails {
   position: relative;
   height: 4px;
   background: var(--dim);
-  overflow: hidden;
+  cursor: pointer;   /* click to jump to this segment's start */
+  transition: background-color var(--theme-dur, 0.45s) var(--ease);
 }
+/* The bar is only 4px tall, so taps are fiddly. Extend the clickable/hover
+   area well above and below with an invisible pseudo-element — it's part of the
+   segment, so pointer events on it count as clicks on the segment, without
+   changing how the 4px bar looks. (No overflow:hidden here, or it'd be clipped;
+   the fill rounds its own corners via border-radius:inherit instead.) */
+.scrub-segment::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -11px;
+  bottom: -11px;
+}
+.scrub-segment:not(.scrub-segment--active):hover { background: var(--scrub-hover); }
+/* the active segment is where you already are — not a seek target */
+.scrub-segment--active { cursor: default; }
 
 .scrub-segment--first {
   border-top-left-radius: 999px;
@@ -896,6 +915,7 @@ html[data-theme="light"] .modal-mark svg .rails {
   height: 100%;
   width: 0%;
   background: var(--green);
+  border-radius: inherit;   /* match the segment's rounded ends (was clipped by overflow) */
   transition: background-color var(--theme-dur, 0.45s) var(--ease);
 }
 
