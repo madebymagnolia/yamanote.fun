@@ -22,7 +22,11 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://madebymagnolia.github.io/yamanote-pwa/ --max-time 5)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://www.yamanote.fun/ --max-time 5)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://www.yamanote.fun/ --max-time 5)",
-      "Bash(curl -s http://localhost:8788/)"
+      "Bash(curl -s http://localhost:8788/)",
+      "Bash(curl -sI \"https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY01-Tokyo-Inner.m4a\" -H \"Origin: https://yamanote.fun\")",
+      "Bash(curl -sI \"https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY01-Tokyo-Inner.opus\" -H \"Origin: https://www.yamanote.fun\" -H \"Referer: https://www.yamanote.fun/\")",
+      "Bash(curl -sI \"https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY13-Ikebukuro-Outer.opus\" -H \"Origin: https://www.yamanote.fun\" -H \"Referer: https://www.yamanote.fun/\")",
+      "Bash(curl -sI \"https://yamanote-audio-8beb.pacifierpacifies.workers.dev/JY13-Ikebukuro-Outer.m4a\" -H \"Origin: https://www.yamanote.fun\" -H \"Referer: https://www.yamanote.fun/\")"
     ]
   }
 }

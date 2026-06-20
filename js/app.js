@@ -835,6 +835,113 @@
       b.addEventListener("click", () => applyLang(currentLang() === "ja" ? "en" : "ja")));
   }
 
+  /* ── offline playback ─────────────────────────────────────────────────────
+     Downloads every station's audio (current AUDIO_EXT) into a dedicated
+     Cache Storage bucket, kept separate from the app-shell cache so it
+     survives shell updates — sw.js exempts it from the activate-time cleanup.
+     OFFLINE_CACHE must match the constant of the same name in sw.js.
+     sw.js then serves a downloaded file straight from that cache at its
+     normal URL — including hand-sliced Range responses for seeking — so
+     nothing in the playback path above (applyAudio, srcFor, …) has to know
+     whether a track is offline; it just stops touching the network. */
+  const OFFLINE_CACHE = "yamanote-audio-v1";
+  const hasCacheApi = "caches" in window;
+
+  function offlineUrls() {
+    const urls = new Set();
+    S.forEach((st) => {
+      const a = st.audio;
+      if (!a) return;
+      if (a.inner) urls.add(a.inner + AUDIO_EXT);
+      if (a.outer) urls.add(a.outer + AUDIO_EXT);
+    });
+    return Array.from(urls);
+  }
+  // Opus and m4a land within a few % of each other in practice (~0.95 MB/track).
+  const offlineSizeEstimateMB = () => Math.round(offlineUrls().length * 0.95);
+
+  const offlineBtn = document.getElementById("offline-btn");
+  const offlineSub = document.getElementById("offline-sub");
+  let offlineState = "idle";    // idle | progress | done | unsupported
+  let offlineCancelled = false;
+
+  function setOfflineUI(state, detail) {
+    offlineState = state;
+    if (!offlineBtn || !offlineSub) return;
+    offlineBtn.classList.toggle("m-pill--ghost", state === "done");
+    if (state === "idle") {
+      offlineBtn.textContent = "Download";
+      offlineBtn.disabled = false;
+      offlineSub.textContent = "Save all tracks on this device (~" + offlineSizeEstimateMB() + " MB)";
+    } else if (state === "progress") {
+      offlineBtn.textContent = "Cancel";
+      offlineBtn.disabled = false;
+      offlineSub.textContent = "Downloading… " + detail;
+    } else if (state === "done") {
+      offlineBtn.textContent = "Remove";
+      offlineBtn.disabled = false;
+      offlineSub.textContent = "Saved on this device — plays without using data";
+    } else if (state === "unsupported") {
+      offlineBtn.textContent = "Unavailable";
+      offlineBtn.disabled = true;
+      offlineSub.textContent = "Offline playback isn't supported in this browser";
+    }
+  }
+
+  async function offlineHaveCount() {
+    const cache = await caches.open(OFFLINE_CACHE);
+    return (await cache.keys()).length;
+  }
+
+  async function refreshOfflineUI() {
+    if (!hasCacheApi) { setOfflineUI("unsupported"); return; }
+    const have = await offlineHaveCount();
+    setOfflineUI(have >= offlineUrls().length ? "done" : "idle");
+  }
+
+  // Limited concurrency so this doesn't open 60 simultaneous connections.
+  async function downloadOfflineAudio() {
+    const urls = offlineUrls();
+    const cache = await caches.open(OFFLINE_CACHE);
+    if (navigator.storage && navigator.storage.persist) {
+      navigator.storage.persist().catch(() => {});
+    }
+    offlineCancelled = false;
+    let done = 0;
+    let idx = 0;
+    async function worker() {
+      while (idx < urls.length) {
+        if (offlineCancelled) return;
+        const url = urls[idx++];
+        try {
+          if (!(await cache.match(url))) {
+            const res = await fetch(url, { cache: "no-store" });
+            if (res.ok) await cache.put(url, res);
+          }
+        } catch (e) {}
+        done++;
+        if (!offlineCancelled) setOfflineUI("progress", done + " / " + urls.length);
+      }
+    }
+    await Promise.all([worker(), worker(), worker(), worker()]);
+    if (!offlineCancelled) refreshOfflineUI();
+  }
+
+  if (offlineBtn) {
+    offlineBtn.addEventListener("click", () => {
+      if (offlineState === "idle") {
+        setOfflineUI("progress", "0 / " + offlineUrls().length);
+        downloadOfflineAudio();
+      } else if (offlineState === "progress") {
+        offlineCancelled = true;
+        refreshOfflineUI();
+      } else if (offlineState === "done") {
+        caches.delete(OFFLINE_CACHE).then(refreshOfflineUI);
+      }
+    });
+    refreshOfflineUI();
+  }
+
   /* ── melodies table (built once, into the info modal) ────────────────────
      One row per station: romaji name · inner melody · outer melody. Melody
      names live in stations.js (melody.inner / .outer); blanks render as "—".
