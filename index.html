@@ -261,7 +261,11 @@
   </div>
 
   <script src="js/stations.js?v=33"></script>
-  <script src="js/app.js?v=60"></script>
+  <script src="js/app.js?v=61"></script>
+  <script type="module">
+    import { init } from "./js/pwa-install.js?v=1";
+    init();
+  </script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {

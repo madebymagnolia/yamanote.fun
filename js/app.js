@@ -502,7 +502,12 @@
   // same handoff a normal "single now-playing track" page would do.
   const audioEl = new Audio();
   audioEl.preload = "auto";
-  audioEl.addEventListener("ended", () => transportNext());
+  audioEl.addEventListener("ended", () => {
+    // A station played all the way through — let the PWA install module know
+    // (it waits for this before offering to install). Fire before advancing.
+    window.dispatchEvent(new CustomEvent("stationComplete"));
+    transportNext();
+  });
   audioEl.addEventListener("timeupdate",     updatePositionState);
   // Until the new src's metadata loads, the scrub bar's total-duration
   // timestamp briefly reads the previous track's duration (buildScrubBar()
