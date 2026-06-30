@@ -79,7 +79,12 @@
   (function () {
     window.__deepLink = null;
     try {
-      var m = location.pathname.match(/^\/([a-z]{2}\d{1,2})-(inner|outer)\/?$/i);
+      // /jy14-mejiro-outer — the station-name slug is decorative; resolution
+      // keys off the JY code + direction. The optional slug group also keeps
+      // older slug-less links (/jy14-outer) working. The slug may itself
+      // contain hyphens (e.g. nishi-nippori), so the trailing direction anchors
+      // the match and the regex backtracks the slug to fit.
+      var m = location.pathname.match(/^\/(jy\d{1,2})-(?:[a-z0-9-]+-)?(inner|outer)\/?$/i);
       if (m) window.__deepLink = { code: m[1].toUpperCase(), direction: m[2].toLowerCase() };
     } catch (e) {}
   })();

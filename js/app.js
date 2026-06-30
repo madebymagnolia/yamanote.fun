@@ -826,9 +826,19 @@
   const SHARE_ORIGIN = "https://yamanote.fun";
   let urlSyncEnabled = false;
   function stationCode(i) { return "JY" + S[normIdx(i)].jy; }   // e.g. "JY13"
+  // Romaji station name → URL slug. Strips macrons (Tōkyō → tokyo) via NFD
+  // diacritic removal, lowercases, and collapses anything non-alphanumeric to
+  // single hyphens (Nishi-Nippori → nishi-nippori, Takanawa Gateway →
+  // takanawa-gateway). MUST stay in sync with the same function in build.js so
+  // the URL the app writes matches the pre-rendered shell's path.
+  function slugify(name) {
+    return name.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  }
   function shareInfo() {
     const st = S[normIdx(currentIndex)];
-    const path = "/" + stationCode(currentIndex).toLowerCase() + "-" + loopKey();
+    const slug = slugify(st.name);
+    const path = "/" + stationCode(currentIndex).toLowerCase() + "-" + slug + "-" + loopKey();
     return {
       name: st.name,
       url: SHARE_ORIGIN + path,

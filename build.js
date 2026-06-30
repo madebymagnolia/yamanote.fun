@@ -43,6 +43,15 @@ const EXCLUDE = new Set([
   "netlify.toml", ".gitignore", ".DS_Store", "_redirects",
 ]);
 
+// Romaji station name → URL slug. MUST stay in sync with slugify() in
+// js/app.js so the path the running app writes (replaceState) matches the
+// pre-rendered shell emitted here. Strips macrons (Tōkyō → tokyo), lowercases,
+// collapses non-alphanumerics to single hyphens (Nishi-Nippori → nishi-nippori).
+function slugify(name) {
+  return name.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
 function loadStations() {
   const code = fs.readFileSync(path.join(ROOT, "js", "stations.js"), "utf8");
   const sandbox = { window: {} };
@@ -75,8 +84,9 @@ function setMeta(html, pattern, value) {
 }
 
 function shellFor(html, station, dir) {
-  const code = "JY" + station.jy;                 // e.g. "JY13"
-  const lc = code.toLowerCase() + "-" + dir;      // e.g. "jy13-inner"
+  const code = "JY" + station.jy;                 // e.g. "JY14"
+  const slug = slugify(station.name);             // e.g. "mejiro"
+  const lc = code.toLowerCase() + "-" + slug + "-" + dir;   // "jy14-mejiro-inner"
   const title = station.name + " — Yamanote.fun";
   const desc =
     "Listening to " + station.name + " on the Yamanote Line loop — " +

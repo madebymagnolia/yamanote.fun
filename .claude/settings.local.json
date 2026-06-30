@@ -35,7 +35,9 @@
       "Bash(node --check js/app.js)",
       "Bash(node --check js/analytics.js)",
       "Bash(node --check build.js)",
-      "Bash(pkill -f \"http.server 8799\")"
+      "Bash(pkill -f \"http.server 8799\")",
+      "Bash(perl -i -pe 's/\\\\Qname.normalize\\(\"NFD\"\\).replace\\(\\\\E.*?\\\\Q, \"\"\\)\\\\E/name.normalize\\(\"NFD\"\\).replace\\(\\\\/[\\\\\\\\u0300-\\\\\\\\u036f]\\\\/g, \"\"\\)/ if $. == 835' js/app.js)",
+      "Bash(perl -i -pe 's/\\\\Qname.normalize\\(\"NFD\"\\).replace\\(\\\\E.*?\\\\Q, \"\"\\)\\\\E/name.normalize\\(\"NFD\"\\).replace\\(\\\\/[\\\\\\\\u0300-\\\\\\\\u036f]\\\\/g, \"\"\\)/ if $. == 51' build.js)"
     ]
   }
 }
