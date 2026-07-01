@@ -916,16 +916,44 @@
       doShare();
     });
   }
+  // Copy a string to the clipboard. The async Clipboard API only works on a
+  // top-level secure origin; inside an iframe (or on an insecure http:// host)
+  // a permissions policy blocks it — calling it there both fails AND logs a
+  // "Clipboard API blocked" console violation. So when we're embedded we skip
+  // straight to the legacy hidden-textarea + execCommand("copy") path, which
+  // is broadly permitted and produces no violation. Returns a Promise<boolean>.
+  let embedded = false;
+  try { embedded = window.self !== window.top; } catch (e) { embedded = true; }
+  function legacyCopy(text) {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) { return false; }
+  }
+  function copyText(text) {
+    let clip = null;
+    try { clip = navigator.clipboard; } catch (e) {}   // getter can throw
+    if (!embedded && clip && clip.writeText) {
+      return clip.writeText(text).then(() => true).catch(() => legacyCopy(text));
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
   if (shareCopy) {
-    shareCopy.addEventListener("click", async () => {
+    shareCopy.addEventListener("click", () => {
       const url = sharePop.dataset.url || shareInfo().url;
-      try {
-        await navigator.clipboard.writeText(url);
-        if (shareCopyTxt) {
-          shareCopyTxt.textContent = "Copied!";
-          window.setTimeout(() => { shareCopyTxt.textContent = "Copy link"; }, 1500);
-        }
-      } catch (e) {}
+      copyText(url).then((ok) => {
+        if (!shareCopyTxt) return;
+        shareCopyTxt.textContent = ok ? "Copied!" : "Press ⌘/Ctrl+C";
+        window.setTimeout(() => { shareCopyTxt.textContent = "Copy link"; }, 1500);
+      });
     });
   }
   // Selecting an intent link dismisses the popover; reposition on resize.
