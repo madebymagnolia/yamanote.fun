@@ -47,7 +47,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/styles.css?v=50" />
+<link rel="stylesheet" href="css/styles.css?v=51" />
 <script>
   /* Flag the installed/fullscreen PWA so the stylesheet can give it its own
      chrome spacing (navigator.standalone covers iOS versions that don't
@@ -104,10 +104,9 @@
 
       <!-- media controls -->
       <div class="controls">
-        <button id="prev" class="ctrl skip" type="button" aria-label="Previous station">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M18 5v14l-10-7 10-7z" />
-            <rect x="6" y="5" width="2.6" height="14" rx="1.1" />
+        <button id="prev" class="ctrl skip seek" type="button" aria-label="Previous station">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 20V5M6 11l6-6 6 6" />
           </svg>
         </button>
 
@@ -121,10 +120,9 @@
           </svg>
         </button>
 
-        <button id="next" class="ctrl skip" type="button" aria-label="Next station">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M6 5v14l10-7L6 5z" />
-            <rect x="15.4" y="5" width="2.6" height="14" rx="1.1" />
+        <button id="next" class="ctrl skip seek" type="button" aria-label="Next station">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 4v15M6 13l6 6 6-6" />
           </svg>
         </button>
       </div>
@@ -298,9 +296,9 @@
   </div>
 
   <script src="js/stations.js?v=33"></script>
-  <script src="js/app.js?v=64"></script>
+  <script src="js/app.js?v=65"></script>
   <script type="module">
-    import { init } from "./js/pwa-install.js?v=2";
+    import { init } from "./js/pwa-install.js?v=3";
     init();
   </script>
   <script type="module">

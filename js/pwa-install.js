@@ -132,7 +132,8 @@ const CSS = `
 .pwa-btn--primary { background: var(--green); color: var(--bg); }
 .pwa-btn--primary:active { filter: brightness(0.94); }
 .pwa-btn--dismiss {
-  background: var(--ctrl-bg); color: var(--dim);
+  background: var(--ctrl-bg); color: var(--fg);
+  border: 1px solid var(--panel-edge);
   -webkit-backdrop-filter: var(--ctrl-blur); backdrop-filter: var(--ctrl-blur);
 }
 .pwa-btn--dismiss:active { background: var(--ctrl-bg-active); }

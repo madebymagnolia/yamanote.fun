@@ -4,13 +4,13 @@
 // cache name changes — leave it stale and returning visitors keep loading an
 // old app shell that points at outdated JS. Keep the ?v= versions below in
 // sync with index.html so the precache stores the assets that shell requests.
-const CACHE = "yamanote-v66";
+const CACHE = "yamanote-v68";
 const ASSETS = [
   "index.html",
-  "css/styles.css?v=50",
+  "css/styles.css?v=51",
   "js/stations.js?v=33",
-  "js/app.js?v=64",
-  "js/pwa-install.js?v=2",
+  "js/app.js?v=65",
+  "js/pwa-install.js?v=3",
   "js/analytics.js?v=2",
   "manifest.webmanifest",
   "icons/icon-192-0.3.png",

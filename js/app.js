@@ -746,6 +746,7 @@
     direction = isInner ? -1 : +1;
     innerBtn.classList.toggle("on", isInner);
     outerBtn.classList.toggle("on", !isInner);
+    document.body.classList.toggle("loop-inner", isInner);   // flips the seek arrows to match direction
     syncUrl();   // direction is part of the shareable URL (…-inner / …-outer)
     // Switching loops swaps to the other playlist's (preloaded) recording for
     // this station and starts it from the top. syncAudio only calls play()
@@ -1204,6 +1205,28 @@
     else if (e.key === "ArrowLeft") { e.preventDefault(); transportPrev(); }
     else if (e.key === " ") { e.preventDefault(); togglePlay(); }
   });
+
+  // mouse-wheel / trackpad — one station per gesture. A single physical
+  // scroll fires many small wheel events, so the first one that clears the
+  // deadzone commits the step and the rest are swallowed until WHEEL_COOLDOWN
+  // has passed, mirroring the swipe gesture's "one flick = one step" feel.
+  // Uses commitStep (raw ribbon position), not transportNext/Prev, so the
+  // scroll direction always matches the ribbon motion regardless of loop
+  // direction — transportNext/Prev are audio-playlist-aware and would
+  // otherwise reverse which way "down" scrolls on the inner loop.
+  const WHEEL_DEADZONE  = 10;    // px of deltaY before a tick counts
+  const WHEEL_COOLDOWN  = 350;   // ms to ignore further wheel events after a step
+  let wheelLocked = false;
+
+  stage.addEventListener("wheel", (e) => {
+    if (modalOpen || sharePopOpen) return;
+    if (Math.abs(e.deltaY) < WHEEL_DEADZONE) return;
+    e.preventDefault();
+    if (wheelLocked) return;
+    wheelLocked = true;
+    window.setTimeout(() => { wheelLocked = false; }, WHEEL_COOLDOWN);
+    commitStep(e.deltaY > 0 ? +1 : -1);
+  }, { passive: false });
 
   // swipe to scrub — the ribbon tracks the finger 1:1, and the moment the drag
   // passes AUTO_PX the switch fires automatically (no need to lift). Because

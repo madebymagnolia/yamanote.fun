@@ -423,6 +423,13 @@ html[data-namelang="ja"] .station .name {
 }
 .ctrl svg { display: block; }
 
+/* prev/next glyphs point up/down to match the actual ribbon motion. On the
+   inner loop that motion is reversed (see direction in app.js), so the
+   glyphs flip in place rather than swapping icons. Scoped to .seek (not the
+   shared .skip sizing class) so the share/info buttons never rotate. */
+.ctrl.seek svg { transition: transform 0.3s var(--ease); }
+body.loop-inner .ctrl.seek svg { transform: rotate(180deg); }
+
 button#share svg {
   margin-top: -3px;
 }

@@ -37,7 +37,9 @@
       "Bash(node --check build.js)",
       "Bash(pkill -f \"http.server 8799\")",
       "Bash(perl -i -pe 's/\\\\Qname.normalize\\(\"NFD\"\\).replace\\(\\\\E.*?\\\\Q, \"\"\\)\\\\E/name.normalize\\(\"NFD\"\\).replace\\(\\\\/[\\\\\\\\u0300-\\\\\\\\u036f]\\\\/g, \"\"\\)/ if $. == 835' js/app.js)",
-      "Bash(perl -i -pe 's/\\\\Qname.normalize\\(\"NFD\"\\).replace\\(\\\\E.*?\\\\Q, \"\"\\)\\\\E/name.normalize\\(\"NFD\"\\).replace\\(\\\\/[\\\\\\\\u0300-\\\\\\\\u036f]\\\\/g, \"\"\\)/ if $. == 51' build.js)"
+      "Bash(perl -i -pe 's/\\\\Qname.normalize\\(\"NFD\"\\).replace\\(\\\\E.*?\\\\Q, \"\"\\)\\\\E/name.normalize\\(\"NFD\"\\).replace\\(\\\\/[\\\\\\\\u0300-\\\\\\\\u036f]\\\\/g, \"\"\\)/ if $. == 51' build.js)",
+      "Bash(cat .claude/launch.json)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8788)"
     ]
   }
 }
