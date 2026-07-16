@@ -47,7 +47,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/styles.css?v=51" />
+<link rel="stylesheet" href="css/styles.css?v=52" />
 <script>
   /* Flag the installed/fullscreen PWA so the stylesheet can give it its own
      chrome spacing (navigator.standalone covers iOS versions that don't
@@ -309,6 +309,18 @@
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("sw.js").catch(() => {});
+      });
+      // Without this, an already-open standalone window (macOS/desktop PWAs
+      // don't get closed/relaunched the way a phone home-screen icon does)
+      // keeps running the shell it originally loaded even after a new SW has
+      // installed and taken over in the background — it only picks up the
+      // update on the *next* reopen. Reload once as soon as the new worker
+      // takes control so a reopen always gets the current shell.
+      let refreshedForUpdate = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (refreshedForUpdate) return;
+        refreshedForUpdate = true;
+        location.reload();
       });
     }
   </script>
